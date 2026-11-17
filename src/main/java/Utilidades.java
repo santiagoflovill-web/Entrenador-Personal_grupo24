@@ -46,25 +46,26 @@ public class Utilidades {
 
      */
     public static int leerDiaDeLaSemana(Scanner teclado, String mensaje) {
-        String dia;
+        char dia='a';
+        do{
+
+        }while(dia!='L' ||dia!='l' ||dia!='M' ||dia!='m' ||dia!='X' ||dia!='x' ||dia!='L' ||dia!='J' ||dia!='j' ||dia!='V' ||dia!='v' ||
+                dia!='S' ||dia!='D' ||dia!='d');
         int numero=0;
-        dia= teclado.nextLine();
-        if(dia=="L" || dia=="l"){
+        if(dia=='L' || dia =='l'){
             numero=0;
-        } else if (dia=="M" || dia=="m") {
-            numero = 1;
-        } else if (dia=="X" || dia=="x") {
-            numero = 2;
-        }else if (dia=="J" || dia=="j") {
-            numero = 3;
-        }else if (dia=="V" || dia=="v") {
-            numero = 4;
-        }else if (dia=="S" || dia=="s") {
-            numero = 5;
-        }else if (dia=="D" || dia=="d") {
-            numero = 3;
-        }else {
-            dia = teclado.nextLine();
+        }else if(dia=='M' || dia=='m'){
+            numero=1;
+        }else if(dia=='X' || dia=='x'){
+            numero=2;
+        }else if(dia=='J' || dia=='j'){
+            numero=3;
+        }else if(dia=='V' || dia=='v'){
+            numero=4;
+        }else if(dia=='S' || dia=='s'){
+            numero=5;
+        }else if(dia=='D' || dia=='d'){
+            numero=6;
         }
         return numero;
     }
