@@ -12,15 +12,47 @@ public class Utilidades {
     }
 
     public static int leerNumero(Scanner teclado, String mensaje, int minimo, int maximo) {
-        // Muestra un mensaje y lee un número por teclado (si no es un número o está fuera de rango, vuelve a
-        // solicitarlo)
-        return 0; // @todo MODIFICAR PARA DEVOLVER EL NÚMERO LEÍDO
+       int numero;
+        do{
+            System.out.print(mensaje);
+            numero = teclado.nextInt();
+        }while(numero<minimo && numero>maximo);
+        return numero;
     }
 
     public static int leerDiaDeLaSemana(Scanner teclado, String mensaje) {
-        // Muestra un mensaje, lee un día de la semana por teclado (L, M, X, J, V, S, D) y devuelve su posición
-        // dentro de la semana (0-6). Si la entrada no es válida, vuelve a solicitarla
-        return 0; // @todo MODIFICAR PARA DEVOLVER EL DÍA DE LA SEMANA LEÍDO
+        char dia;
+        int numero=0;
+        do{
+            System.out.print(mensaje);
+            dia = teclado.nextLine().charAt(0);
+            switch (dia){
+                case 'L':
+                    numero = 0;
+                    break;
+                case 'M':
+                    numero = 1;
+                    break;
+                case 'X':
+                    numero = 2;
+                    break;
+                case 'J':
+                    numero = 3;
+                    break;
+                case 'V':
+                    numero = 4;
+                    break;
+                case 'S':
+                    numero = 5;
+                    break;
+                case 'D':
+                    numero = 6;
+                    break;
+            }
+
+        }while(dia != 'L' || dia != 'M' || dia != 'X' || dia != 'J' || dia !='V' || dia != 'S' || dia != 'D');
+
+        return numero;
     }
 
     public static int diaSemanaAPosicion(String dia) {
