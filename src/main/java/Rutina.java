@@ -44,7 +44,7 @@ public class Rutina {
         if (numEstiramientos == estiramientos.length){
             esAñadido = false;
         }else{
-            ejercicios[numEstiramientos-1] = estiramiento;
+            estiramientos[numEstiramientos-1] = estiramiento;
         }
         return esAñadido;
     }
@@ -66,9 +66,9 @@ public class Rutina {
         if (ejerciciosCompletos()) {
             numEjercicios = ejercicios.length;
         } else {
-            do {
+            while(ejercicios[aux] != null){
                 aux++;
-            }while(ejercicios[aux] != null);
+            }
             numEjercicios =aux;
         }
         return numEjercicios;
@@ -83,7 +83,7 @@ public class Rutina {
         } else {
             do {
                 aux++;
-            }while(ejercicios[aux] != null);
+            }while(estiramientos[aux] != null);
             numEstiramientos =aux;
         }
         return numEstiramientos; // @todo MODIFICAR PARA DEVOLVER EL NÚMERO DE ESTIRAMIENTOS
