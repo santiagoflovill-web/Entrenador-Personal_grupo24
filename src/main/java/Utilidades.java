@@ -18,7 +18,8 @@ public class Utilidades {
 
     /**
      * Función que lee un número introducido por teclado entre los
-     * valores introducidos como parámetro (minimo y maximo)
+     * valores introducidos como parámetro (minimo y maximo),
+     * comprobando que el numero introducido es un entero.
      * @param teclado
      * @param mensaje
      * @param minimo
@@ -33,7 +34,8 @@ public class Utilidades {
         while(teclado.hasNextInt()){
             do{
                 numero = teclado.nextInt();
-            }while(numero < minimo || numero > maximo);
+                System.out.print(mensaje);
+            }while((numero < minimo || numero > maximo) && teclado.hasNextInt());
         }
 
         return numero;
@@ -41,30 +43,32 @@ public class Utilidades {
 
     /**
      * Funcion que lee un día de la semana (L,M,X,J,V,S,D) y devuelve la posición del mismo (0-6)
+     * comprobando que el usuario a introducido una letra válida (mayúscula o minúscula)
      * @param teclado
      * @param mensaje
 
      */
     public static int leerDiaDeLaSemana(Scanner teclado, String mensaje) {
-        char dia='a';
+        String dia;
         do{
+            System.out.println(mensaje);
+            dia=teclado.nextLine();
 
-        }while(dia!='L' ||dia!='l' ||dia!='M' ||dia!='m' ||dia!='X' ||dia!='x' ||dia!='L' ||dia!='J' ||dia!='j' ||dia!='V' ||dia!='v' ||
-                dia!='S' ||dia!='D' ||dia!='d');
+        }while(dia.length()!=1 || !(dia.equals("L") || dia.equals("l") || dia.equals("M") || dia.equals("m") || dia.equals("X") || dia.equals("x") || dia.equals("j") || dia.equals("J") || dia.equals("V") || dia.equals("v") || dia.equals("S") || dia.equals("s") || dia.equals("D") || dia.equals("d")));
         int numero=0;
-        if(dia=='L' || dia =='l'){
+        if(dia.equals("L") || dia.equals("l")){
             numero=0;
-        }else if(dia=='M' || dia=='m'){
+        }else if(dia.equals("M") || dia.equals("m")){
             numero=1;
-        }else if(dia=='X' || dia=='x'){
+        }else if(dia.equals("X") || dia.equals("x")){
             numero=2;
-        }else if(dia=='J' || dia=='j'){
+        }else if(dia.equals("J") || dia.equals("j")){
             numero=3;
-        }else if(dia=='V' || dia=='v'){
+        }else if(dia.equals("V") || dia.equals("v")){
             numero=4;
-        }else if(dia=='S' || dia=='s'){
+        }else if(dia.equals("S") || dia.equals("s")){
             numero=5;
-        }else if(dia=='D' || dia=='d'){
+        }else if(dia.equals("D") || dia.equals("d")){
             numero=6;
         }
         return numero;
@@ -72,7 +76,7 @@ public class Utilidades {
 
     /**
      * Devuelve la posicion del dia de la semana (L,M,X,J,V,S,D)
-     * dentro de la semana(0,1,2,3,4,5,6) o -1 si no es un dia valido.
+     * dentro de la semana(0,1,2,3,4,5,6) o -1 si no es un día no valido.
      * @param dia Dia de la semana (L,M,X,JV,S,D)
      *
      */
@@ -91,7 +95,7 @@ public class Utilidades {
         }else if (dia=="S" || dia=="s") {
             numero = 5;
         }else if (dia=="D" || dia=="d") {
-            numero = 3;
+            numero = 6;
         }else {
             numero = -1;
         }
@@ -99,9 +103,9 @@ public class Utilidades {
     }
 
     /**
-     * Función que devuelve el día de la semana correspondiente
+     * Función que devuelve el día de la semana
      * (Lunes,Martes,Miercoles,Jueves,Viernes,Sábado,Domingo) correspondiente
-     * a la posición indicada (0-6) o "desconocido"si la posición es incorrecta.
+     * a la posición indicada (0-6) o "desconocido" si la posición es incorrecta.
      * @param pos Posición del día de la semana
      */
     public static String posicionADiaSemana(int pos) {
@@ -123,8 +127,6 @@ public class Utilidades {
         }else{
             posicion = "Desconocido";
         }
-        // Devuelve el día de la semana (Lunes, Martes, Miércoles, Jueves, Viernes, Sábado, Domingo)
-        // correspondiente a una posición dentro de la semana (0-6), o "Desconocido" si no es válida
         return posicion;
     }
 }
