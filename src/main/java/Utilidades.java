@@ -46,13 +46,9 @@ public class Utilidades {
 
      */
     public static int leerDiaDeLaSemana(Scanner teclado, String mensaje) {
-        char dia;
+        String dia;
         int numero=0;
-        do{
-            System.out.println(mensaje);
-            dia = teclado.nextLine().charAt(0);
-        }while(dia!="L" && dia!="l"&& dia!="M"&& dia!="m"&& dia!="X"&& dia!="x"&& dia!="J"&& dia!="j"
-                && dia!="V"&& dia!="v"&& dia!="S"&& dia!="s"&& dia!="D"&& dia!="d"));
+        dia= teclado.nextLine();
         if(dia=="L" || dia=="l"){
             numero=0;
         } else if (dia=="M" || dia=="m") {
