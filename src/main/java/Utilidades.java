@@ -5,8 +5,10 @@ import java.util.Scanner;
  */
 public class Utilidades {
     public static String leerCadena(Scanner teclado, String s) {
-        // Muestra un mensaje y lee una cadena (línea completa) por teclado
-        return null; // @todo MODIFICAR PARA DEVOLVER LA CADENA LEÍDA
+       String texto;
+       System.out.print(s);
+       texto = teclado.nextLine();
+       return texto;
     }
 
     public static int leerNumero(Scanner teclado, String mensaje, int minimo, int maximo) {
