@@ -1,72 +1,128 @@
 public class Rutina {
+    String nombreRutina;
+    String[] ejercicios;
+    String[] estiramientos;
 
     public Rutina(String nombre, int maxEjercicios, int maxEstiramientos) {
         // Inicialización de la rutina
+        nombreRutina = nombre;
+        ejercicios = new String[maxEjercicios];
+        estiramientos = new String[maxEstiramientos];
     }
 
     public String getNombre() {
         // Devuelve el nombre de la rutina
-        return null; // @todo MODIFICAR PARA DEVOLVER EL NOMBRE DE LA RUTINA
+        return nombreRutina;
     }
 
     public String[] getEjercicios() {
         // Devuelve los ejercicios de la rutina (array de longitud igual al número de ejercicios actuales)
-        return null; // @todo MODIFICAR PARA DEVOLVER LOS EJERCICIOS DE LA RUTINA
+        return ejercicios;
     }
 
     public String[] getEstiramientos() {
         // Devuelve los estiramientos de la rutina (array de longitud igual al número de estiramientos actuales)
-        return null; // @todo MODIFICAR PARA DEVOLVER LOS ESTIRAMIENTOS DE LA RUTINA
+        return estiramientos;
     }
 
     public boolean agregarEjercicio(String ejercicio) {
         // Añade un ejercicio a la rutina (si está completa, muestra un mensaje de error)
-        return false; // @todo MODIFICAR PARA DEVOLVER SI SE HA AÑADIDO EL EJERCICIO
+        boolean esAñadido = true;
+        int numEjercicios = numEjercicios();
+        if (numEjercicios == ejercicios.length){
+            esAñadido = false;
+        }else{
+            ejercicios[numEjercicios-1] = ejercicio;
+        }
+        return esAñadido;
     }
 
     public boolean agregarEstiramiento(String estiramiento) {
         // Añade un estiramiento a la rutina (si está completa, muestra un mensaje de error)
-        return false; // @todo MODIFICAR PARA DEVOLVER SI SE HA AÑADIDO EL ESTIRAMIENTO
+        boolean esAñadido = true;
+        int numEstiramientos = numEstiramientos();
+        if (numEstiramientos == estiramientos.length){
+            esAñadido = false;
+        }else{
+            ejercicios[numEstiramientos-1] = estiramiento;
+        }
+        return esAñadido;
     }
 
     public boolean ejerciciosCompletos() {
         // Comprueba si la rutina tiene el máximo de ejercicios
-        return false; // @todo MODIFICAR PARA DEVOLVER SI ESTÁN COMPLETOS LOS EJERCICIOS
+        return ejercicios[ejercicios.length - 1] != null;
     }
 
     public boolean estiramientosCompletos() {
         // Comprueba si la rutina tiene el máximo de estiramientos
-        return false; // @todo MODIFICAR PARA DEVOLVER SI ESTÁN COMPLETOS LOS ESTIRAMIENTOS
+        return estiramientos[estiramientos.length - 1] != null;
     }
 
     public int numEjercicios() {
         // Devuelve el número de ejercicios de la rutina
-        return 0; // @todo MODIFICAR PARA DEVOLVER EL NÚMERO DE EJERCICIOS
+        int aux=0;
+        int numEjercicios;
+        if (ejerciciosCompletos()) {
+            numEjercicios = ejercicios.length;
+        } else {
+            do {
+                aux++;
+            }while(ejercicios[aux] != null);
+            numEjercicios =aux;
+        }
+        return numEjercicios;
     }
 
     public int numEstiramientos() {
         // Devuelve el número de estiramientos de la rutina
-        return 0; // @todo MODIFICAR PARA DEVOLVER EL NÚMERO DE ESTIRAMIENTOS
+        int aux=0;
+        int numEstiramientos;
+        if (estiramientosCompletos()) {
+            numEstiramientos = estiramientos.length;
+        } else {
+            do {
+                aux++;
+            }while(ejercicios[aux] != null);
+            numEstiramientos =aux;
+        }
+        return numEstiramientos; // @todo MODIFICAR PARA DEVOLVER EL NÚMERO DE ESTIRAMIENTOS
     }
 
     @Override
     public String toString() {
         // Devuelve una representación en forma de cadena de la rutina, para mostrar por pantalla
-        return null; // @todo MODIFICAR PARA DEVOLVER LA CADENA CORRECTA
+        String rutina = "Rutina: " + nombreRutina + "\nEjercicios:";
+        for(int i=0; i !=numEjercicios(); i++){
+            rutina +="\n- " +ejercicios[i];
+        }
+        rutina +="\nEstiramientos";
+        for(int i=0; i !=numEstiramientos(); i++){
+            rutina+="\n"+ i+1 + ". " + estiramientos[i];
+        }
+        return rutina; // @todo MODIFICAR PARA DEVOLVER LA CADENA CORRECTA
     }
 
     public String toRawString() {
         // Devuelve una representación en forma de cadena de la rutina sin formato, para guardar en archivo
-        return null; // @todo MODIFICAR PARA DEVOLVER LA CADENA CORRECTA
+        String rutinaFich = nombreRutina;
+        for(int i=0; i !=numEjercicios(); i++){
+            rutinaFich +="\n" + ejercicios[i];
+        }
+        rutinaFich +="\nESTIRAMIENTOS";
+        for(int i=0; i !=numEstiramientos(); i++){
+            rutinaFich +="\nestiramientos[i]";
+        }
+        return rutinaFich; // @todo MODIFICAR PARA DEVOLVER LA CADENA CORRECTA
     }
 
     public int getMaxEjercicios() {
         // Devuelve el máximo de ejercicios permitidos en la rutina
-        return 0; // @todo MODIFICAR PARA DEVOLVER EL MÁXIMO DE EJERCICIOS
+        return ejercicios.length;
     }
 
     public int getMaxEstiramientos() {
         // Devuelve el máximo de estiramientos permitidos en la rutina
-        return 0; // @todo MODIFICAR PARA DEVOLVER EL MÁXIMO DE ESTIRAMIENTOS
+        return estiramientos.length;
     }
 }
