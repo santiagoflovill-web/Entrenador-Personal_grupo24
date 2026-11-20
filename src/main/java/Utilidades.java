@@ -1,5 +1,6 @@
 import java.util.Scanner;
 
+
 /**
  * Clase con métodos de utilidad para la entrada de datos por teclado y el manejo de días de la semana.
  */
@@ -51,26 +52,12 @@ public class Utilidades {
     public static int leerDiaDeLaSemana(Scanner teclado, String mensaje) {
         String dia;
         do{
-            System.out.println(mensaje);
-            dia=teclado.nextLine();
-
-        }while(dia.length()!=1 || !(dia.equals("L") || dia.equals("l") || dia.equals("M") || dia.equals("m") || dia.equals("X") || dia.equals("x") || dia.equals("j") || dia.equals("J") || dia.equals("V") || dia.equals("v") || dia.equals("S") || dia.equals("s") || dia.equals("D") || dia.equals("d")));
-        int numero=0;
-        if(dia.equals("L") || dia.equals("l")){
-            numero=0;
-        }else if(dia.equals("M") || dia.equals("m")){
-            numero=1;
-        }else if(dia.equals("X") || dia.equals("x")){
-            numero=2;
-        }else if(dia.equals("J") || dia.equals("j")){
-            numero=3;
-        }else if(dia.equals("V") || dia.equals("v")){
-            numero=4;
-        }else if(dia.equals("S") || dia.equals("s")){
-            numero=5;
-        }else if(dia.equals("D") || dia.equals("d")){
-            numero=6;
-        }
+            dia = leerCadena(teclado, mensaje);
+        }while(dia.length()!=1 || !(dia.equalsIgnoreCase("L") || dia.equalsIgnoreCase("M") ||
+                dia.equalsIgnoreCase("X") || dia.equalsIgnoreCase("j")  ||
+                dia.equalsIgnoreCase("V")  || dia.equalsIgnoreCase("s") ||dia.equalsIgnoreCase("d")));
+        int numero;
+        numero = diaSemanaAPosicion(dia);
         return numero;
     }
 
@@ -82,22 +69,26 @@ public class Utilidades {
      */
     public static int diaSemanaAPosicion(String dia) {
         int numero;
-        if(dia=="L" || dia=="l"){
-            numero=0;
-        } else if (dia=="M" || dia=="m") {
-            numero = 1;
-        } else if (dia=="X" || dia=="x") {
-            numero = 2;
-        }else if (dia=="J" || dia=="j") {
-            numero = 3;
-        }else if (dia=="V" || dia=="v") {
-            numero = 4;
-        }else if (dia=="S" || dia=="s") {
-            numero = 5;
-        }else if (dia=="D" || dia=="d") {
-            numero = 6;
-        }else {
+        if(dia==null){
+            numero =-1;
+        }else if (dia.length()!=1) {
             numero = -1;
+        } else if (dia.equalsIgnoreCase("L")){
+            numero=0;
+        }else if(dia.equalsIgnoreCase("M")){
+            numero=1;
+        }else if(dia.equalsIgnoreCase("X")){
+            numero=2;
+        }else if(dia.equalsIgnoreCase("J")){
+            numero=3;
+        }else if(dia.equalsIgnoreCase("V")){
+            numero=4;
+        }else if(dia.equalsIgnoreCase("S")){
+            numero=5;
+        }else if(dia.equalsIgnoreCase("D")){
+            numero=6;
+        }else{
+            numero=-1;
         }
         return numero;
     }
@@ -109,21 +100,10 @@ public class Utilidades {
      * @param pos Posición del día de la semana
      */
     public static String posicionADiaSemana(int pos) {
-        String posicion;
-        if(pos==0){
-            posicion = "Lunes";
-        }else if(pos==1){
-            posicion = "Martes";
-        }else if(pos==2) {
-            posicion = "Miércoles";
-        }else if(pos==3) {
-            posicion = "Jueves";
-        }else if(pos==4) {
-            posicion = "Viernes";
-        }else if(pos==5) {
-            posicion = "Sábado";
-        }else if(pos==6) {
-            posicion = "Domingo";
+        String posicion="";
+        String[] dias = new String[] {"Lunes", "Martes" ,"Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"};
+        if(pos >= 0 && pos <=6){
+            posicion = dias[pos];
         }else{
             posicion = "Desconocido";
         }
