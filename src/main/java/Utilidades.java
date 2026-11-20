@@ -28,17 +28,17 @@ public class Utilidades {
      */
     public static int leerNumero(Scanner teclado, String mensaje, int minimo, int maximo) {
         int numero=0;
-        while(!teclado.hasNextInt()){
+        boolean valida = false;
+        while(!valida){
             System.out.print(mensaje);
-            teclado.next();
+            String linea = teclado.nextLine();
+            try{
+                numero = Integer.parseInt(linea.trim());
+                valida = numero >= minimo && numero <= maximo;
+            }catch (NumberFormatException e){
+                valida = false;
+            }
         }
-        while(teclado.hasNextInt()){
-            do{
-                numero = teclado.nextInt();
-                System.out.print(mensaje);
-            }while((numero < minimo || numero > maximo) && teclado.hasNextInt());
-        }
-
         return numero;
     }
 
